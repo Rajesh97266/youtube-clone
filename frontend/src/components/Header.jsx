@@ -4,8 +4,10 @@ import VideoCallIcon from "@mui/icons-material/VideoCall";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import CloseIcon from "@mui/icons-material/Close";
-import Logo from "../../public/logo.png";
+import Logo from "/logo.png";
 import { useState } from "react";
+import "./Header.css";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -13,16 +15,20 @@ function Header() {
     <div className="header">
       <div className="headerLeft">
         <MenuIcon />
-        <img src={Logo} alt="logo" className="headerLogo" />
+        <Link to="/">
+          <img src={Logo} alt="logo" className="headerLogo" />
+        </Link>
       </div>
       <div className="searchInput">
         <input
           type="text"
           placeholder="Search"
           value={searchQuery}
-          onChange={(e)=>setSearchQuery(e.target.value)}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <SearchIcon />
+        <Link to={`/search/${searchQuery}`}>
+          <SearchIcon className="searchButton" />
+        </Link>
       </div>
       <div className="headerIcons">
         <VideoCallIcon className="headerIcon" />
